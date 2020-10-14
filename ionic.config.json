@@ -1,0 +1,7 @@
+{
+  "name": "techStore",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

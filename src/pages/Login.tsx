@@ -12,7 +12,7 @@ import {
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginUser } from '../helpers/auth';
-import { getRequest, postRequest, delRequest } from '../helpers/api';
+import { request } from '../helpers/api';
 
 import { toast } from '../helpers/toast';
 import { setUserState } from '../redux/actions';
@@ -41,22 +41,22 @@ const Login: React.FC = () => {
     setBusy(false)
   }
 
-  const newTech = {
-    "tech":{
-        "title":"API",
-        "description":"helloooo",
-        "category":"fish!",
-        "price":20,
-        "cost":30
-    }}
-  // const userFavourites = getRequest(token, 'user_favourites')
-  // const teches = getRequest(token, 'teches')
-  // const techItem = getRequest(token, 'teches/20')
-  // const addTech = postRequest(token, 'teches', newTech)
-  // const addFavourite = postRequest(token, 'favourites', {favourite:{tech_id: 20}})
-  // const favouriteId = 7
-  // const delFavourite = delRequest(token,`favourite/${favouriteId}`)
-  // const autoLogin = getRequest(token, 'auto_login')
+  // const newTech = {
+  //   "tech":{
+  //       "title":"API",
+  //       "description":"helloooo",
+  //       "category":"fish!",
+  //       "price":20,
+  //       "cost":30
+  //   }}
+  // const userFavourites = request(token, 'user_favourites', 'GET', {})
+  // const teches = request(token, 'teches', 'GET', {})
+  // const techItem = request(token, 'teches/20', 'GET', {})
+  // const addTech = request(token, 'teches', 'POST', newTech)
+  // const addFavourite = request(token, 'favourites', 'POST', {favourite:{tech_id: 20}})
+  // const favouriteId = 6
+  // const delFavourite = request(token,`favourite/${favouriteId}`, 'DELETE', {})
+  // const autoLogin = request(token, 'auto_login', 'GET', {})
 
 
 

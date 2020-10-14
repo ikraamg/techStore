@@ -54,8 +54,8 @@ const appPages: AppPage[] = [
     mdIcon: trashSharp
   },
   {
-    title: 'Spam',
-    url: '/page/Spam',
+    title: 'Login',
+    url: '/login',
     iosIcon: warningOutline,
     mdIcon: warningSharp
   }
@@ -63,7 +63,6 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  console.log(location)
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>

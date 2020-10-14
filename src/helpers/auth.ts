@@ -2,13 +2,44 @@ import { toast } from './toast';
 
 
 export async function loginUser(username: string, password: string) {
-  const email = `${username}@yahoo.com`
   try {
-    // const res = await firebase.auth().signInWithEmailAndPassword(email, password)
-    const res = `logged in! ${email}`
-    return res
+  const  res = await fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'Accept':'application/json',
+    },
+      body: JSON.stringify({ 
+        username, 
+        password 
+        })
+  })
+
+  const response = await res.json()
+  return response
+
   } catch(error) {
-    toast(error.message, 4000)
-    return false
+    return {error: 'Network Error'}
+  }
+}
+
+export async function registerUser(username: string, email: string, password: string) {
+  try {
+    const res = await fetch('http://localhost:3000/users', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept":"application/json",
+      },
+      body: JSON.stringify({
+        username, 
+        email, 
+        password
+      })
+    })
+    return await res.json()
+  } catch (error) {
+    const res = {error: 'Please check your internet connection'}
+    return res
   }
 }

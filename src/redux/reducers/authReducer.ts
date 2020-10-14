@@ -16,6 +16,6 @@ export default function authReducer(
         }
       }
   }
-
+  console.log(state)
   return state
 }

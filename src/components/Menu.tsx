@@ -44,13 +44,11 @@ const Menu: React.FC = () => {
   const dispatch = useDispatch()
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const location = useLocation();
-  const loggingOut = () => {
-    dispatch(logOutUser())
-  }
+  const handleLogOut = () => dispatch(logOutUser())
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
-          <IonButton onClick={loggingOut}> <IonIcon slot="start" md={logOutOutline} ></IonIcon> Logout </IonButton>
+          <IonButton onClick={handleLogOut}> <IonIcon slot="start" md={logOutOutline} ></IonIcon> Logout </IonButton>
         <IonList id="inbox-list">
           <IonListHeader>Inbox</IonListHeader>
           <IonNote>{user ? user.user.username : ''}</IonNote>

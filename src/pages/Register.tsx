@@ -35,6 +35,7 @@ const Register: React.FC = () => {
 
     setBusy(true)
     registerUser(username, email, password).then(user => {
+      setBusy(false)
       if(user.error) {
         toast(user.error, 4000)
       } else {
@@ -42,7 +43,6 @@ const Register: React.FC = () => {
         dispatch(setUser(user))
         history.push('/favourites')
       }
-      setBusy(false)
     });    
   }
 

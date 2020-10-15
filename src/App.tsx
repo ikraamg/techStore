@@ -37,7 +37,7 @@ const App: React.FC = () => {
    return (
     <IonApp>
       <>
-        {user !== undefined ? (
+        {user ? (
           <IonReactRouter>
             <IonSplitPane contentId="main">
               <Menu />

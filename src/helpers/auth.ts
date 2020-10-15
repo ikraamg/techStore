@@ -16,7 +16,7 @@ export async function loginUser(username: string, password: string) {
   return response
 
   } catch(error) {
-    return {error: 'Network Error'}
+    return {error: 'Please check your internet connection'}
   }
 }
 

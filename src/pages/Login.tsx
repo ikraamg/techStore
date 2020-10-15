@@ -32,6 +32,7 @@ const Login: React.FC = () => {
   const login = () => {
     setBusy(true)
     loginUser(username, password).then(user => {
+      setBusy(false)
       if(user.error) {
         toast(user.error, 4000)
       } else {
@@ -39,7 +40,6 @@ const Login: React.FC = () => {
         dispatch(setUser(user))
         history.push('/favourites')
       }
-      setBusy(false)
     });    
   }
 

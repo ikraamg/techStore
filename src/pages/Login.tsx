@@ -29,26 +29,27 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('')
   console.log(user)
 
-  async function login() {
+  const login = () => {
     setBusy(true)
-    const response: any = await loginUser(username, password)
-    console.log(response)
-    if (!response.error) {
-      dispatch(setUser(response))
-      history.replace('/favourites')
-      toast('You have logged in')
-    } else{
-      toast(response.error)
-    }
-    setBusy(false)
+    loginUser(username, password).then(user => {
+      if(user.error) {
+        toast(user.error, 4000)
+      } else {
+        toast('Login successful')
+        dispatch(setUser(user))
+        history.push('/favourites')
+      }
+      setBusy(false)
+    });    
   }
 
   useEffect(() => {
     const autoUser = request(token, 'auto_login', 'GET', {}).then(data => {return data})
     if (!autoUser) {
-      history.replace('/favourites')
+      history.replace('/tech')
     }
-  }, [history, token])
+    //eslint-disable-next-line
+  }, [])
 
   // const newTech = {
   //   "tech":{

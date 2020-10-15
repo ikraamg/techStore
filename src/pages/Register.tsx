@@ -9,9 +9,11 @@ import {
   IonLoading
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from '../helpers/toast';
 import { registerUser } from '../helpers/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/actions/authActions';
 
 
 const Register: React.FC = () => {
@@ -20,9 +22,10 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('')
   const [cpassword, setCPassword] = useState('')
   const [busy, setBusy] = useState<boolean>(false)
+  const history = useHistory()
+  const dispatch = useDispatch()
 
-  async function register() {
-    setBusy(true)
+  const register = () => {
     if (password !== cpassword) {
       return toast('Passwords do not match')
     }
@@ -30,13 +33,17 @@ const Register: React.FC = () => {
       return toast('Username and password are required')
     }
 
-    const res = await registerUser(username, email, password)
-    if(res.error) {
-      toast(res.error, 4000)
-    } else {
-      toast('Registration successful')
-    }
-    setBusy(false)
+    setBusy(true)
+    registerUser(username, email, password).then(user => {
+      if(user.error) {
+        toast(user.error, 4000)
+      } else {
+        toast('Registration successful')
+        dispatch(setUser(user))
+        history.push('/favourites')
+      }
+      setBusy(false)
+    });    
   }
 
   return (

@@ -8,10 +8,7 @@ export default function authReducer(state = defaultState, action: any): any {
         userData: action.userData
     }
     case 'LOG_OUT':
-      return {
-        ...state,
-        userData: {}
-    }
+      return {}
   }
   return state
 }

@@ -23,11 +23,11 @@ const Login: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.JC6qKuH9SG0SIiYSfhZUFTtirxN9Q47buLk0DPFFFzE'
-  const user = useSelector((state: RootStateOrAny) => state.auth.userData)
-  const token = user ? user.token : ''
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  console.log(user)
+  // const user = useSelector((state: RootStateOrAny) => state.auth.userData)
+  // const token = user ? user.token : ''
+  const [username, setUsername] = useState('test')
+  const [password, setPassword] = useState('123456')
+  // console.log(user)
 
   const login = () => {
     setBusy(true)
@@ -43,13 +43,13 @@ const Login: React.FC = () => {
     });    
   }
 
-  useEffect(() => {
-    const autoUser = request(token, 'auto_login', 'GET', {}).then(data => {return data})
-    if (!autoUser) {
-      history.replace('/tech')
-    }
-    //eslint-disable-next-line
-  }, [])
+  // useEffect(() => {
+  //   const autoUser = request(token, 'auto_login', 'GET', {}).then(data => {return data})
+  //   if (!autoUser) {
+  //     history.replace('/tech')
+  //   }
+  //   //eslint-disable-next-line
+  // }, [])
 
   // const newTech = {
   //   "tech":{

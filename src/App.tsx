@@ -1,5 +1,4 @@
 import Menu from './components/Menu';
-import Page from './pages/Page';
 import React from 'react';
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -26,23 +25,38 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Home from './pages/Home';
+import Favourites from './pages/Favourites';
+import Tech from './pages/Tech';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 const App: React.FC = () => {
 
+  const user = useSelector((state: RootStateOrAny) => state.auth.userData)
 
-  return (
+   return (
     <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            {/* <Route path="/page/:name" component={Page} exact /> */}
-            {/* <Redirect from="/" to="/page/Inbox" exact /> */}
-            <Route path="/login" component={Login} exact />
+      <>
+        {user !== undefined ? (
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">   
+                 <Route path="/favourites" component={Favourites} exact />
+            <Route path="/tech" component={Tech} exact />
+                <Redirect from="/" to="/appointments" exact />
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        ) : (
+          <IonReactRouter>
+            <Route path="/home" component={Home} exact />
             <Route path="/register" component={Register} exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
+            <Route path="/login" component={Login} exact />
+            <Redirect from="/" to="/home" exact />
+          </IonReactRouter>
+        )}
+      </>
     </IonApp>
   );
 };

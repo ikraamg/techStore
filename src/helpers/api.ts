@@ -15,11 +15,11 @@ export async function request(token:string = '', path:string = '/', method:strin
   }
   const  res = await fetch(`http://localhost:3000/${path}`, requestConfig)
   const response = await res.json()
-  console.log(response)
   toast(response.message)
   return response
 }
   catch(error){
     toast(error.message)
+    console.log(error.message)
   }
 }

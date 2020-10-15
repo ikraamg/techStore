@@ -1,6 +1,3 @@
-import { toast } from './toast';
-
-
 export async function loginUser(username: string, password: string) {
   try {
   const  res = await fetch('http://localhost:3000/login', {

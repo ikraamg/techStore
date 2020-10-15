@@ -1,21 +1,17 @@
-const defaultState = {
-  user: {}
-}
+const defaultState = {}
 
-export default function authReducer(
-  state = defaultState,
-  action: any 
-): any {
-  // work with state
+export default function authReducer(state = defaultState, action: any): any {
   switch(action.type) {
-    case 'SET_USER_STATE':
+    case 'SET_USER':
       return {
         ...state,
-        user: {
-          username: action.payload
-        }
-      }
+        userData: action.userData
+    }
+    case 'LOG_OUT':
+      return {
+        ...state,
+        userData: {}
+    }
   }
-  console.log(state)
   return state
 }

@@ -1,6 +1,6 @@
 import { toast } from './toast';
 
-export async function request(token:string, path:string, method:string, body:object) {
+export async function request(token:string = '', path:string = '/', method:string = 'GET', body:object = {}) {
   try {
   const requestConfig = {
     method,

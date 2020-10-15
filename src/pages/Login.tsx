@@ -9,14 +9,13 @@ import {
   IonLoading
 } from '@ionic/react';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginUser } from '../helpers/auth';
-import { request } from '../helpers/api';
 
 import { toast } from '../helpers/toast';
 import { setUser } from '../redux/actions/authActions';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false)

@@ -33,7 +33,6 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 const App: React.FC = () => {
 
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
-
    return (
     <IonApp>
       <>
@@ -42,9 +41,9 @@ const App: React.FC = () => {
             <IonSplitPane contentId="main">
               <Menu />
               <IonRouterOutlet id="main">   
-                 <Route path="/favourites" component={Favourites} exact />
-            <Route path="/tech" component={Tech} exact />
-                <Redirect from="/" to="/appointments" exact />
+                <Route path="/favourites" component={Favourites} exact />
+                <Route path="/tech" component={Tech} exact />
+                <Redirect from="/" to="/tech" exact />
               </IonRouterOutlet>
             </IonSplitPane>
           </IonReactRouter>

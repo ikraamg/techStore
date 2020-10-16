@@ -27,16 +27,16 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Favourites',
-    url: '/favourites',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
-  },
-  {
     title: 'Tech',
     url: '/tech',
     iosIcon: trashOutline,
     mdIcon: trashSharp
+  },
+  {
+    title: 'Favourites',
+    url: '/favourites',
+    iosIcon: mailOutline,
+    mdIcon: mailSharp
   },
 ];
 

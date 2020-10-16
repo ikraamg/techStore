@@ -1,5 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonIcon, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonMenuButton, IonButtons } from '@ionic/react';
-import { star, starOutline } from 'ionicons/icons';
+import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonMenuButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
@@ -32,7 +31,7 @@ const Favourites: React.FC = () => {
       });
   })
 
-    const handleRemove = (fav_id:number) => request(token, `favourites/${fav_id}`, 'DELETE')
+    // const handleRemove = (fav_id:number) => request(token, `favourites/${fav_id}`, 'DELETE')
 
 
 

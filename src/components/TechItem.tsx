@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonIcon, IonSlides, IonSlide, IonContent, IonCol } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonIcon, IonSlides, IonSlide, IonCol } from '@ionic/react';
 import { star, starOutline } from 'ionicons/icons';
 import './TechItem.css';
 

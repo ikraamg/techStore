@@ -81,7 +81,6 @@ const Tech: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle size="large">Tech</IonTitle>
-          {/* <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar> */}
         </IonToolbar>
       </IonHeader>
 
@@ -93,6 +92,9 @@ const Tech: React.FC = () => {
         </IonHeader>
       <IonLoading message="Logging in..." isOpen={busy} />
       <IonGrid>
+        <IonRow>
+          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar>
+        </IonRow>
         <IonRow>
           {techItems()}
         </IonRow>

@@ -1,5 +1,3 @@
-import { toast } from './toast';
-
 export async function request(token:string = '', path:string = '/', method:string = 'GET', body:object = {}) {
   try {
   const requestConfig = {
@@ -15,11 +13,12 @@ export async function request(token:string = '', path:string = '/', method:strin
   }
   const  res = await fetch(`http://localhost:3000/${path}`, requestConfig)
   const response = await res.json()
-  toast(response.message)
+  console.log("request -> response", response)
   return response
 }
   catch(error){
-    toast(error.message)
-    console.log(error.message)
+    console.log(error)
+    const res = {error: 'Please check your internet connection'}
+    return res
   }
 }

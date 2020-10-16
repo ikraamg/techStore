@@ -1,57 +1,76 @@
-import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonIcon, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
-import { star, starOutline } from 'ionicons/icons';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
-import { setTeches } from '../redux/actions/dataActions';
+import { setTeches, setFavourites } from '../redux/actions/dataActions';
 import './Page.css';
+import TechItem from '../components/TechItem'
+
 
 const Tech: React.FC = () => {
-  const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const dispatch = useDispatch()
   const [busy, setBusy] = useState<boolean>(false)
-  const teches = useSelector((state: RootStateOrAny) => state.data.teches)
+  const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
-  // const store = useSelector((state: RootStateOrAny) => state)
-  // console.log("Tech:React.FC -> store", store)
-  const favourite = true
-
-  const handleFavourite = (tech_id:number) =>{
-  request(token, 'favourites', 'POST', {favourite:{tech_id}}).then((data) => console.log(data))
+  const teches = useSelector((state: RootStateOrAny) => state.data.teches)
+  const favourites = useSelector((state: RootStateOrAny) => state.data.favourites)
+  const store = useSelector((state: RootStateOrAny) => state)
+  console.log("Tech:React.FC -> store", store)
+  
+  const allData = () => {
+    setBusy(true);
+    const techReq = request(token, 'teches');
+    const favReq = request(token, 'user_favourites');
+    Promise.all([techReq, favReq])
+      .then((data) => {        
+        setBusy(false)
+        if(data[0].error || data[1].error) {
+          toast('Please check internet connection', 4000)
+        } else {
+          dispatch(setTeches(data[0]))
+          dispatch(setFavourites(data[1]))
+        }
+      });
   }
 
+  const handleFavourite = (tech_id:number, status:boolean) =>{
+    setBusy(true);
+    const toggleFavourite = status ? 
+    request(token, `favourites/${tech_id}`, 'DELETE')
+    :
+    request(token, 'favourites', 'POST', {favourite:{tech_id}})
 
+    toggleFavourite.then((data) => 
+    {
+      if(data.error) {
+        setBusy(false)
+        toast(data.error, 4000)
+      } else {
+        allData()
+      }
+    })
+  }
 
   useIonViewWillEnter(() =>{
-     setBusy(true)
-     request(token, 'teches').then(teches => {
-      setBusy(false)
-      if(user.error) {
-        toast(user.error, 4000)
-      } else {
-        dispatch(setTeches(teches))
-        // console.log("Tech:React.FC -> teches", teches)
-      }
-    });  
-  },[])
+    allData()
+  })
 
-  console.log(teches)
+  const addFavourites = () => {
+    const out = teches.map((tech:any) => {
+      const checkFavourite = favourites.filter((fav:any) => fav.id === tech.id)
+      checkFavourite.length > 0 ? 
+      Object.assign(tech, {favourite: true}) 
+      : 
+      Object.assign(tech, {favourite: false})
+      return tech
+    })
+    return out
+  }
 
-  const techItems = teches ? teches.map((tech:any) => {
-    return ( 
-      <IonCard key={tech.id}>
-        {/* <img alt='mad' src="https://scontent-jnb1-1.xx.fbcdn.net/v/t31.0-8/1396939_377841179016599_1902197579_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=MVdjGoPIrmAAX-_tsLQ&_nc_ht=scontent-jnb1-1.xx&oh=fa5ffbf10d32932f90b8b84955eea320&oe=5FAF305E" /> */}
-        <IonCardContent>
-          <IonCardSubtitle>{tech.category}</IonCardSubtitle>
-          <IonCardTitle>{tech.title}</IonCardTitle>
-        </IonCardContent>
-        <IonCardContent>
-          {tech.description}
-        </IonCardContent>
-      <IonButton onClick={ () => handleFavourite(tech.id)}> <IonIcon md={favourite ? star : starOutline} ></IonIcon></IonButton>
-      </IonCard>)
-  }) : ''
+  const techItems = () => {
+  return teches && favourites ? addFavourites().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechItem>) : '' 
+}
 
   return (
     <IonPage>
@@ -62,7 +81,7 @@ const Tech: React.FC = () => {
           </IonToolbar>
         </IonHeader>
       <IonLoading message="Logging in..." isOpen={busy} />
-        {techItems}
+        {techItems()}
       </IonContent>
     </IonPage>
   );

@@ -90,7 +90,7 @@ const Tech: React.FC = () => {
             <IonTitle size="large">Tech</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonLoading message="Logging in..." isOpen={busy} />
+      <IonLoading message="Loading ..." isOpen={busy} />
       <IonGrid>
         <IonRow>
           <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar>

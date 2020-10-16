@@ -68,7 +68,7 @@ const Favourites: React.FC = () => {
             <IonTitle size="large">Favourites</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonLoading message="Logging in..." isOpen={busy} />
+      <IonLoading message="Loading favourites..." isOpen={busy} />
         {techItems}
       </IonContent>
     </IonPage>

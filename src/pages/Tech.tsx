@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonSearchbar, IonButtons, IonMenuButton } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
@@ -11,6 +11,7 @@ import TechItem from '../components/TechItem'
 const Tech: React.FC = () => {
   const dispatch = useDispatch()
   const [busy, setBusy] = useState<boolean>(false)
+  const [searchText, setSearchText] = useState<string>('');
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
   const teches = useSelector((state: RootStateOrAny) => state.data.teches)
@@ -74,14 +75,28 @@ const Tech: React.FC = () => {
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle size="large">Tech</IonTitle>
+          {/* <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar> */}
+        </IonToolbar>
+      </IonHeader>
+
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{'Tech'}</IonTitle>
+            <IonTitle size="large">Tech</IonTitle>
           </IonToolbar>
         </IonHeader>
       <IonLoading message="Logging in..." isOpen={busy} />
-        {techItems()}
+      <IonGrid>
+        <IonRow>
+          {techItems()}
+        </IonRow>
+      </IonGrid>
       </IonContent>
     </IonPage>
   );

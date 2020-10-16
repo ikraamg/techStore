@@ -1,19 +1,18 @@
 import {
-  IonButton,
   IonContent,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
-  IonListHeader,
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonListHeader,
 } from '@ionic/react';
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { logOutOutline, mailOutline, mailSharp, trashOutline, trashSharp} from 'ionicons/icons';
+import { logOutOutline, storefrontOutline, starOutline} from 'ionicons/icons';
 import './Menu.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import {logOutUser} from '../redux/actions/authActions'
@@ -29,14 +28,14 @@ const appPages: AppPage[] = [
   {
     title: 'Tech',
     url: '/tech',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
+    iosIcon: storefrontOutline,
+    mdIcon: storefrontOutline
   },
   {
     title: 'Favourites',
     url: '/favourites',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    iosIcon: starOutline,
+    mdIcon: starOutline
   },
 ];
 
@@ -48,9 +47,8 @@ const Menu: React.FC = () => {
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
-          <IonButton onClick={handleLogOut}> <IonIcon slot="start" md={logOutOutline} ></IonIcon> Logout </IonButton>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
+          <IonListHeader>Menu</IonListHeader>
           <IonNote>{user ? user.user.username : ''}</IonNote>
           {appPages.map((appPage, index) => {
             return (
@@ -62,6 +60,12 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+          <IonMenuToggle key='logout' autoHide={false} >
+            <IonItem onClick={handleLogOut} lines='none'>
+              <IonIcon slot="start" md={logOutOutline} ></IonIcon>
+              <IonLabel>Log Out</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>

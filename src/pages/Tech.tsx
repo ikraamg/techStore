@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonSearchbar, IonButtons, IonMenuButton } from '@ionic/react';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
@@ -11,7 +11,6 @@ import TechItem from '../components/TechItem'
 const Tech: React.FC = () => {
   const dispatch = useDispatch()
   const [busy, setBusy] = useState<boolean>(false)
-  const [searchText, setSearchText] = useState<string>('');
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
   const teches = useSelector((state: RootStateOrAny) => state.data.teches)
@@ -71,7 +70,7 @@ const Tech: React.FC = () => {
 
   const techItems = () => {
   return teches && favourites ? addFavourites().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechItem>) : '' 
-}
+  }
 
   return (
     <IonPage>
@@ -80,7 +79,7 @@ const Tech: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle size="large">Tech</IonTitle>
+          <IonTitle className='ion-text-center' size="large">Tech</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -92,9 +91,6 @@ const Tech: React.FC = () => {
         </IonHeader>
       <IonLoading message="Loading ..." isOpen={busy} />
       <IonGrid>
-        <IonRow>
-          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar>
-        </IonRow>
         <IonRow>
           {techItems()}
         </IonRow>

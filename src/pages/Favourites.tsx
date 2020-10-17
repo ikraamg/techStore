@@ -1,10 +1,12 @@
-import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonMenuButton, IonButtons } from '@ionic/react';
-import React, { useState } from 'react';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton } from '@ionic/react';
+import React, { useState, useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
-import { setFavourites } from '../redux/actions/dataActions';
+import { setTeches } from '../redux/actions/dataActions';
 import './Page.css';
+import FavouriteItem from '../components/FavouriteItem';
+import { useHistory } from 'react-router';
 
 const Favourites: React.FC = () => {
   const dispatch = useDispatch()
@@ -12,44 +14,40 @@ const Favourites: React.FC = () => {
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
   const favourites = useSelector((state: RootStateOrAny) => state.data.favourites)
-  const store = useSelector((state: RootStateOrAny) => state)
-  console.log("Tech:React.FC -> store", store)
-
-
-  useIonViewWillEnter(() =>{
+  const history = useHistory();
+  
+  const allData = () => {
     setBusy(true);
     const favReq = request(token, 'user_favourites');
-
     Promise.all([favReq])
       .then((data) => {        
         setBusy(false)
         if(data[0].error) {
-          toast(user.error, 4000)
+          toast('Please check internet connection', 4000)
         } else {
-          dispatch(setFavourites(data[0]))
+          dispatch(setTeches(data[1]))
         }
       });
-  })
+  }
 
-    // const handleRemove = (fav_id:number) => request(token, `favourites/${fav_id}`, 'DELETE')
+  const handleFavourite = (tech_id:number) =>{
+    setBusy(true);
+    request(token, `favourites/${tech_id}`, 'DELETE').then((data) => 
+    {
+      if(data.error) {
+        setBusy(false)
+        toast(data.error, 4000)
+      } else {
+        allData()
+        history.push('/tech')
+        history.push('/favourites')
+      }
+    })
+  }
 
-
-
-  const techItems = favourites ? favourites.map((tech:any) => {
-    return ( 
-      <IonCard key={tech.id}>
-        {/* <img alt='mad' src="https://scontent-jnb1-1.xx.fbcdn.net/v/t31.0-8/1396939_377841179016599_1902197579_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=MVdjGoPIrmAAX-_tsLQ&_nc_ht=scontent-jnb1-1.xx&oh=fa5ffbf10d32932f90b8b84955eea320&oe=5FAF305E" /> */}
-        <IonCardContent>
-          <IonCardSubtitle>{tech.category}</IonCardSubtitle>
-          <IonCardTitle>{tech.title}</IonCardTitle>
-        </IonCardContent>
-        <IonCardContent>
-          {tech.description}
-          <IonButton onClick={ () => console.log("remove me!")}> Remove from favourites(TODO)
-      </IonButton>
-        </IonCardContent>
-      </IonCard>)
-  }) : ''
+  const favItems = () => {
+  return favourites ? favourites.map((tech:any) =>  <FavouriteItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></FavouriteItem>) : '' 
+  }
 
   return (
     <IonPage>
@@ -58,7 +56,7 @@ const Favourites: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle size="large">Favourites</IonTitle>
+          <IonTitle className='ion-text-center' size="large">Favourites</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -68,8 +66,12 @@ const Favourites: React.FC = () => {
             <IonTitle size="large">Favourites</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonLoading message="Loading favourites..." isOpen={busy} />
-        {techItems}
+      <IonLoading message="Loading ..." isOpen={busy} />
+      <IonGrid>
+        <IonRow>
+          {favItems()}
+        </IonRow>
+      </IonGrid>
       </IonContent>
     </IonPage>
   );

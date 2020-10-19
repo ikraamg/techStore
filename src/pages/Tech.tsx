@@ -6,8 +6,6 @@ import { toast } from '../helpers/toast';
 import { setTeches, setFavourites } from '../redux/actions/dataActions';
 import TechItem from '../components/TechItem'
 import { useParams } from 'react-router';
-import TechDetails from '../components/TechDetails';
-
 
 
 const Tech: React.FC = () => {
@@ -16,17 +14,9 @@ const Tech: React.FC = () => {
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
   const teches = useSelector((state: RootStateOrAny) => state.data.teches)
-  const favourites = useSelector((state: RootStateOrAny) => state.data.favourites)
-  // const store = useSelector((state: RootStateOrAny) => state)
-  // console.log("Tech:React.FC -> store", store)
-  // const p = useParams()
-  // const name = ''
-  // console.log(p)
+  const favourites = useSelector((state: RootStateOrAny) => state.data.favourites) 
   let {name} = useParams()
 
-
-
-  
   const allData = () => {
     setBusy(true);
     const techReq = request(token, 'teches');
@@ -87,22 +77,7 @@ const Tech: React.FC = () => {
   }
 
   const techItems = () => renderTeches(addFavourites);
-
   const techDetails = () => renderTeches(() => addFavourites().filter((tech:any) =>  tech.title === name));
-
-
-  // const techItems = () => {
-  // return teches && favourites ? addFavourites().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechItem>) : [] 
-  // }
-
-  // const findTech = () => {
-  // return teches && favourites ? addFavourites().filter((tech:any) =>  tech.title === name) : [] 
-  // }
-
-  // const techDetails = () => {
-  // return teches && favourites ? findTech().map((tech:any) =>  <TechDetails key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechDetails>) : [] 
-  // }
-  
 
   return (
     <IonPage>

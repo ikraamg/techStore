@@ -4,8 +4,8 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
 import { setTeches, setFavourites } from '../redux/actions/dataActions';
-import './Page.css';
 import TechItem from '../components/TechItem'
+
 
 
 const Tech: React.FC = () => {
@@ -76,10 +76,10 @@ const Tech: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
+          <IonButtons slot="start" color='primary'>
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className='ion-text-center' size="large">Tech</IonTitle>
+          <IonTitle size="large">Tech</IonTitle>
         </IonToolbar>
       </IonHeader>
 

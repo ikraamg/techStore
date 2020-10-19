@@ -37,6 +37,12 @@ const appPages: AppPage[] = [
     iosIcon: starOutline,
     mdIcon: starOutline
   },
+  {
+    title: 'Log Out',
+    url: '/logout',
+    iosIcon: logOutOutline,
+    mdIcon: logOutOutline
+  },
 ];
 
 const Menu: React.FC = () => {
@@ -48,24 +54,18 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Menu</IonListHeader>
-          <IonNote>{user ? user.user.username : ''}</IonNote>
+          <IonListHeader>Tech Favourites</IonListHeader>
+          <IonNote className= 'ion-padding'>{user ? user.user.username : ''}</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false} onClick={appPage.url === '/logout' ? handleLogOut : () => ''}>
                   <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
           })}
-          <IonMenuToggle key='logout' autoHide={false} >
-            <IonItem onClick={handleLogOut} lines='none'>
-              <IonIcon slot="start" md={logOutOutline} ></IonIcon>
-              <IonLabel>Log Out</IonLabel>
-            </IonItem>
-          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>

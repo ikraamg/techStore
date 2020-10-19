@@ -6,7 +6,10 @@ import {
   IonToolbar,
   IonInput,
   IonButton,
-  IonLoading
+  IonLoading,
+  IonGrid,
+  IonRow,
+  IonCol
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -41,7 +44,7 @@ const Register: React.FC = () => {
       } else {
         toast('Registration successful')
         dispatch(setUser(user))
-        history.push('/favourites')
+        history.push('/tech')
       }
     });    
   }
@@ -50,30 +53,42 @@ const Register: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Register</IonTitle>
+          <IonTitle className='ion-text-center' >Register</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
       <IonLoading message="Registering..." duration={0} isOpen={busy}/>
+     <IonContent className="ion-padding">
+        <IonGrid style={{'marginTop': "5vh"}}>
+          <IonRow className="ion-justify-content-center">
+            <IonCol size='auto'>
+              <form>
         <IonInput
+        className="ion-padding ion-text-center"
           placeholder="Username?"
           onIonChange={(e: any) => setUsername(e.target.value)}/>
         <IonInput
+        className="ion-padding ion-text-center"
           placeholder="Email?"
           onIonChange={(e: any) => setEmail(e.target.value)}/>
         <IonInput
+        className="ion-padding ion-text-center"
           type="password"
           placeholder="Password?"
           onIonChange={(e: any) => setPassword(e.target.value)}/>
         <IonInput
+        className="ion-padding ion-text-center"
           type="password"
           placeholder="Confirm Password?"
           onIonChange={(e: any) => setCPassword(e.target.value)}/>
-        <IonButton onClick={register}>Register</IonButton>
+        <IonButton expand='full' className="ion-padding" onClick={register}>Register</IonButton>
 
-        <p>
+        <p className="ion-padding ion-text-center">
           Already have an account? <Link to="/login">Login</Link>
         </p>
+       </form>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

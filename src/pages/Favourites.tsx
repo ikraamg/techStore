@@ -1,10 +1,9 @@
-import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton, IonButton, IonText } from '@ionic/react';
+import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
 import { setTeches } from '../redux/actions/dataActions';
-import './Page.css';
 import FavouriteItem from '../components/FavouriteItem';
 import { useHistory } from 'react-router';
 
@@ -30,6 +29,10 @@ const Favourites: React.FC = () => {
       });
   }
 
+  useIonViewWillEnter(() =>{
+    allData()
+  })
+
   const handleFavourite = (tech_id:number) =>{
     setBusy(true);
     request(token, `favourites/${tech_id}`, 'DELETE').then((data) => 
@@ -46,8 +49,9 @@ const Favourites: React.FC = () => {
   }
 
   const favItems = () => {
-  return favourites ? favourites.map((tech:any) =>  <FavouriteItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></FavouriteItem>) : '' 
+  return favourites ? favourites.map((tech:any) =>  <FavouriteItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></FavouriteItem>) : [] 
   }
+  const items = favItems()
 
   return (
     <IonPage>
@@ -56,7 +60,7 @@ const Favourites: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className='ion-text-center' size="large">Favourites</IonTitle>
+          <IonTitle  size="large">Favourites</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -68,9 +72,25 @@ const Favourites: React.FC = () => {
         </IonHeader>
       <IonLoading message="Loading ..." isOpen={busy} />
       <IonGrid>
-        <IonRow>
-          {favItems()}
-        </IonRow>
+       
+          {items.length === 0 ? 
+          (<IonRow className='ion-justify-content-center'>
+            <IonButton 
+            style={{'marginTop': "25vh"}} 
+            fill='outline' 
+            routerLink='/tech' 
+            expand='full'> 
+              <IonText color='primary'>
+                Click to Add New Favourites
+              </IonText>
+            </IonButton> 
+          </IonRow>)
+          :(
+          <IonRow>
+            {items}
+          </IonRow>
+          ) 
+          }
       </IonGrid>
       </IonContent>
     </IonPage>

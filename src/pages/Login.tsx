@@ -6,7 +6,10 @@ import {
   IonToolbar,
   IonInput,
   IonButton,
-  IonLoading
+  IonLoading,
+  IonRow,
+  IonGrid,
+  IonCol
 } from '@ionic/react';
 
 import React, { useState } from 'react';
@@ -16,6 +19,7 @@ import { loginUser } from '../helpers/auth';
 import { toast } from '../helpers/toast';
 import { setUser } from '../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
+import './Login.css';
 
 const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false)
@@ -33,7 +37,7 @@ const Login: React.FC = () => {
       } else {
         toast('Login successful')
         dispatch(setUser(user))
-        history.push('/favourites')
+        history.push('/tech')
       }
     });    
   }
@@ -64,26 +68,35 @@ const Login: React.FC = () => {
   // const autoLogin = request(token, 'auto_login', 'GET', {})
 
   return (
-    <IonPage>
+    <IonPage className='background'>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle className='ion-text-center' >Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Logging in..." duration={0} isOpen={busy} />
       <IonContent className="ion-padding">
-        <IonInput
-          placeholder="Username?"
-          onIonChange={(e: any) => setUsername(e.target.value)} />
-        <IonInput
-          type="password"
-          placeholder="Password?"
-          onIonChange={(e: any) => setPassword(e.target.value)} />
-        <IonButton onClick={login}>Login</IonButton>
-
-        <p>
-          New here? <Link to="/register">Register</Link>
-        </p>
+        <IonGrid style={{'marginTop': "5vh"}}>
+          <IonRow className="ion-justify-content-center">
+            <IonCol size='auto'>
+              <form>
+              <IonInput
+                className="ion-padding ion-text-center"
+                placeholder="Username?"
+                onIonChange={(e: any) => setUsername(e.target.value)} />
+              <IonInput
+                className="ion-padding ion-text-center"
+                type="password"
+                placeholder="Password?"
+                onIonChange={(e: any) => setPassword(e.target.value)} />
+              <IonButton expand='full' className="ion-padding" onClick={login}>Login</IonButton>
+              <p className="ion-padding ion-text-center">
+                New here? <Link to="/register">Register</Link>
+              </p>
+              </form>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   )

@@ -10,29 +10,29 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-} from "@ionic/react";
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toast } from "../helpers/toast";
-import { registerUser } from "../helpers/auth";
-import { setUser } from "../redux/actions/authActions";
+} from '@ionic/react';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toast } from '../helpers/toast';
+import { registerUser } from '../helpers/auth';
+import { setUser } from '../redux/actions/authActions';
 
 const Register: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpassword, setCPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [cpassword, setCPassword] = useState('');
   const [busy, setBusy] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const register = () => {
     if (password !== cpassword) {
-      return toast("Passwords do not match");
+      return toast('Passwords do not match');
     }
-    if (username.trim() === "" || password.trim() === "") {
-      return toast("Username and password are required");
+    if (username.trim() === '' || password.trim() === '') {
+      return toast('Username and password are required');
     }
 
     setBusy(true);
@@ -41,9 +41,9 @@ const Register: React.FC = () => {
       if (user.error) {
         toast(user.error, 4000);
       } else {
-        toast("Registration successful");
+        toast('Registration successful');
         dispatch(setUser(user));
-        history.push("/tech");
+        history.push('/tech');
       }
     });
   };
@@ -57,7 +57,7 @@ const Register: React.FC = () => {
       </IonHeader>
       <IonLoading message="Registering..." duration={0} isOpen={busy} />
       <IonContent className="ion-padding enableBg">
-        <IonGrid style={{ marginTop: "5vh" }}>
+        <IonGrid style={{ marginTop: '5vh' }}>
           <IonRow className="ion-justify-content-center">
             <IonCol size="auto">
               <form>
@@ -92,7 +92,9 @@ const Register: React.FC = () => {
                 </IonButton>
 
                 <p className="ion-padding ion-text-center">
-                  Already have an account? <Link to="/login">Login</Link>
+                  Already have an account?
+                  {' '}
+                  <Link to="/login">Login</Link>
                 </p>
               </form>
             </IonCol>

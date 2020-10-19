@@ -2,12 +2,12 @@ const defaultState = {};
 
 export default function dataReducer(state = defaultState, action: any): any {
   switch (action.type) {
-    case "SET_TECHES":
+    case 'SET_TECHES':
       return {
         ...state,
         teches: action.teches,
       };
-    case "SET_FAVOURITES":
+    case 'SET_FAVOURITES':
       return {
         ...state,
         favourites: action.favourites,

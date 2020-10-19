@@ -10,22 +10,22 @@ import {
   IonRow,
   IonGrid,
   IonCol,
-} from "@ionic/react";
+} from '@ionic/react';
 
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../helpers/auth";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../helpers/auth';
 
-import { toast } from "../helpers/toast";
-import { setUser } from "../redux/actions/authActions";
+import { toast } from '../helpers/toast';
+import { setUser } from '../redux/actions/authActions';
 
 const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("test");
-  const [password, setPassword] = useState("123456");
+  const [username, setUsername] = useState('test');
+  const [password, setPassword] = useState('123456');
 
   const login = () => {
     setBusy(true);
@@ -34,9 +34,9 @@ const Login: React.FC = () => {
       if (user.error) {
         toast(user.error, 4000);
       } else {
-        toast("Login successful");
+        toast('Login successful');
         dispatch(setUser(user));
-        history.push("/tech");
+        history.push('/tech');
       }
     });
   };
@@ -75,7 +75,7 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonLoading message="Logging in..." duration={0} isOpen={busy} />
       <IonContent className="ion-padding enableBg">
-        <IonGrid style={{ marginTop: "5vh" }}>
+        <IonGrid style={{ marginTop: '5vh' }}>
           <IonRow className="ion-justify-content-center">
             <IonCol size="auto">
               <form>
@@ -98,7 +98,9 @@ const Login: React.FC = () => {
                   Login
                 </IonButton>
                 <p className="ion-padding ion-text-center">
-                  New here? <Link to="/register">Register</Link>
+                  New here?
+                  {' '}
+                  <Link to="/register">Register</Link>
                 </p>
               </form>
             </IonCol>

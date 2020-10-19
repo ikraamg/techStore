@@ -1,7 +1,3 @@
-export const setUser = (userData: any) => {
-  return { type: "SET_USER", userData };
-};
+export const setUser = (userData: any) => ({ type: 'SET_USER', userData });
 
-export const logOutUser = () => {
-  return { type: "LOG_OUT" };
-};
+export const logOutUser = () => ({ type: 'LOG_OUT' });

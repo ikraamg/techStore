@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton } from '@ionic/react';
+import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar, useIonViewWillEnter, IonGrid, IonRow, IonButtons, IonMenuButton, IonBackButton } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
@@ -84,7 +84,7 @@ const Tech: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start" color='primary'>
-            <IonMenuButton />
+            { name ? <IonBackButton /> : <IonMenuButton  /> }
           </IonButtons>
           <IonTitle size="large">{name ? name : 'Tech'}</IonTitle>
         </IonToolbar>

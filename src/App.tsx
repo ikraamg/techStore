@@ -3,6 +3,7 @@ import React from 'react';
 import Login from './pages/Login'
 import Register from './pages/Register'
 
+
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
               <IonRouterOutlet id="main">   
                 <Route path="/favourites" component={Favourites} exact />
                 <Route path="/tech" component={Tech} exact />
+                <Route path="/tech/:name" component={Tech} />
                 <Redirect from="/" to="/tech" exact />
               </IonRouterOutlet>
             </IonSplitPane>

@@ -5,6 +5,8 @@ import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
 import { setTeches, setFavourites } from '../redux/actions/dataActions';
 import TechItem from '../components/TechItem'
+import { useParams } from 'react-router';
+import TechDetails from '../components/TechDetails';
 
 
 
@@ -15,8 +17,15 @@ const Tech: React.FC = () => {
   const {token} = user ? user : ''
   const teches = useSelector((state: RootStateOrAny) => state.data.teches)
   const favourites = useSelector((state: RootStateOrAny) => state.data.favourites)
-  const store = useSelector((state: RootStateOrAny) => state)
-  console.log("Tech:React.FC -> store", store)
+  // const store = useSelector((state: RootStateOrAny) => state)
+  // console.log("Tech:React.FC -> store", store)
+  // const p = useParams()
+  // const name = ''
+  // console.log(p)
+  let {name} = useParams()
+
+
+
   
   const allData = () => {
     setBusy(true);
@@ -34,13 +43,13 @@ const Tech: React.FC = () => {
       });
   }
 
-  const handleFavourite = (tech_id:number, status:boolean) =>{
+  const handleFavourite = (tech_id:number, status:boolean, e:any) =>{
     setBusy(true);
     const toggleFavourite = status ? 
     request(token, `favourites/${tech_id}`, 'DELETE')
     :
     request(token, 'favourites', 'POST', {favourite:{tech_id}})
-
+    
     toggleFavourite.then((data) => 
     {
       if(data.error) {
@@ -50,6 +59,11 @@ const Tech: React.FC = () => {
         allData()
       }
     })
+
+    if (!!e) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
   }
 
   useIonViewWillEnter(() =>{
@@ -68,9 +82,27 @@ const Tech: React.FC = () => {
     return out
   }
 
-  const techItems = () => {
-  return teches && favourites ? addFavourites().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechItem>) : '' 
+  const renderTeches = (itemArray:any) => {
+  return teches && favourites ? itemArray().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite} name={name}></TechItem>) : [] 
   }
+
+  const techItems = () => renderTeches(addFavourites);
+
+  const techDetails = () => renderTeches(() => addFavourites().filter((tech:any) =>  tech.title === name));
+
+
+  // const techItems = () => {
+  // return teches && favourites ? addFavourites().map((tech:any) =>  <TechItem key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechItem>) : [] 
+  // }
+
+  // const findTech = () => {
+  // return teches && favourites ? addFavourites().filter((tech:any) =>  tech.title === name) : [] 
+  // }
+
+  // const techDetails = () => {
+  // return teches && favourites ? findTech().map((tech:any) =>  <TechDetails key= {tech.id} tech={tech} handleFavourite={handleFavourite}></TechDetails>) : [] 
+  // }
+  
 
   return (
     <IonPage>
@@ -79,20 +111,20 @@ const Tech: React.FC = () => {
           <IonButtons slot="start" color='primary'>
             <IonMenuButton />
           </IonButtons>
-          <IonTitle size="large">Tech</IonTitle>
+          <IonTitle size="large">{name ? name : 'Tech'}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tech</IonTitle>
+            <IonTitle size="large">{name ? name : 'Tech'}</IonTitle>
           </IonToolbar>
         </IonHeader>
       <IonLoading message="Loading ..." isOpen={busy} />
       <IonGrid>
         <IonRow>
-          {techItems()}
+          {name ? techDetails() : techItems()}
         </IonRow>
       </IonGrid>
       </IonContent>

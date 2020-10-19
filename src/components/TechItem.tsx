@@ -1,18 +1,21 @@
 import React from 'react';
 import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonIcon, IonCol, IonGrid, IonRow, IonText } from '@ionic/react';
 import { star, starOutline } from 'ionicons/icons';
-import './TechItem.css';
 
 
 interface ContainerProps {
   tech: any,
   handleFavourite: any
+  name:any
 }
 
-const TechItem: React.FC<ContainerProps> = ({tech, handleFavourite}) => {
+const TechItem: React.FC<ContainerProps> = ({tech, handleFavourite, name}) => {
   return (
-    <IonCol sizeXs='12' sizeSm='6' sizeXl='4'>
-      <IonCard key={tech.id}>
+    <IonCol sizeXs='12' sizeSm={name ? '12' : '6'} sizeXl={name ? '12' : '4'}>
+      <IonCard 
+      key={tech.id} 
+      button={name ? false : true} 
+      routerLink={ name ? undefined : `/tech/${tech.title}`}>
           <img alt='laptop' src={`https://source.unsplash.com/1600x900/?${tech.title},${tech.category}`} />
           <IonCardContent>
             <IonGrid>
@@ -32,7 +35,7 @@ const TechItem: React.FC<ContainerProps> = ({tech, handleFavourite}) => {
               </IonRow>
             <IonRow className='ion-justify-content-center'>
               <IonButton fill='outline' expand='full'
-              onClick={ () => handleFavourite(tech.id, tech.favourite)}> 
+              onClick={ (e) => handleFavourite(tech.id, tech.favourite, e)}> 
                 <IonIcon slot='start' md={ tech.favourite ? star : starOutline }>
                 </IonIcon> 
                   <IonText color='primary'>

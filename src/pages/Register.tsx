@@ -57,7 +57,7 @@ const Register: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Registering..." duration={0} isOpen={busy}/>
-     <IonContent className="ion-padding">
+     <IonContent className="ion-padding enableBg">
         <IonGrid style={{'marginTop': "5vh"}}>
           <IonRow className="ion-justify-content-center">
             <IonCol size='auto'>

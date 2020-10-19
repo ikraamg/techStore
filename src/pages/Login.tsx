@@ -19,7 +19,6 @@ import { loginUser } from '../helpers/auth';
 import { toast } from '../helpers/toast';
 import { setUser } from '../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
-import './Login.css';
 
 const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false)
@@ -68,14 +67,14 @@ const Login: React.FC = () => {
   // const autoLogin = request(token, 'auto_login', 'GET', {})
 
   return (
-    <IonPage className='background'>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle className='ion-text-center' >Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Logging in..." duration={0} isOpen={busy} />
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding enableBg">
         <IonGrid style={{'marginTop': "5vh"}}>
           <IonRow className="ion-justify-content-center">
             <IonCol size='auto'>

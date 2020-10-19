@@ -2,6 +2,12 @@
 http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
+
+.enableBg {
+  --background: url(https://user-images.githubusercontent.com/34813339/96331248-17f68680-105c-11eb-92c2-07d35c7447c8.jpg)
+    0 0/100% 100% no-repeat;
+}
+
 :root {
   /** primary **/
   --ion-color-primary: #fa8500;
@@ -83,12 +89,12 @@ http://ionicframework.com/docs/theming/ */
    */
 
   body {
-    --ion-color-primary: #428cff;
-    --ion-color-primary-rgb: 66, 140, 255;
+    --ion-color-primary: #fa8500;
+    --ion-color-primary-rgb: 56, 128, 255;
     --ion-color-primary-contrast: #ffffff;
     --ion-color-primary-contrast-rgb: 255, 255, 255;
-    --ion-color-primary-shade: #3a7be0;
-    --ion-color-primary-tint: #5598ff;
+    --ion-color-primary-shade: #dc7500;
+    --ion-color-primary-tint: #fb911a;
 
     --ion-color-secondary: #50c8ff;
     --ion-color-secondary-rgb: 80, 200, 255;

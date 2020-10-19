@@ -54,7 +54,7 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Tech Favourites</IonListHeader>
+          <IonListHeader>Tech Explorer</IonListHeader>
           <IonNote className= 'ion-padding'>{user ? user.user.username : ''}</IonNote>
           {appPages.map((appPage, index) => {
             return (

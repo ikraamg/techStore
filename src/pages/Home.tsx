@@ -11,14 +11,14 @@ import React from 'react';
 const Home: React.FC = () => {
 
   return (
-    <IonPage>
+    <IonPage className= 'enableBg'>
       <IonHeader>
         <IonToolbar>
-          <IonTitle className='ion-text-center' >Welcome to Tech Favourites</IonTitle>
+          <IonTitle className='ion-text-center' >Welcome to Tech Explorer</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding ion-text-center" >
-        <IonTitle style={{'marginTop':'10vh'}} className='ion-text-center' >Enter Your Personal Technology Collection</IonTitle>
+      <IonContent className="ion-padding ion-text-center enableBg" >
+        <IonTitle style={{'marginTop':'10vh'}} className='ion-text-center' >Explore The Latest in Technology</IonTitle>
         <IonButton style={{'marginTop':'10vh', 'marginRight':'30px'}} routerLink="/login">Login</IonButton>
         <IonButton style={{'marginTop':'10vh'}} routerLink="/register" color="secondary">Register</IonButton>
       </IonContent>

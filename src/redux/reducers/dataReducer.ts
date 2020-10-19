@@ -13,6 +13,5 @@ export default function dataReducer(state = defaultState, action: any): any {
         favourites: action.favourites
       }
     }
-  // console.log(state);
   return state
 }

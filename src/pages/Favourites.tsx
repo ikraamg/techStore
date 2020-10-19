@@ -68,25 +68,23 @@ const Favourites: React.FC = () => {
         </IonHeader>
       <IonLoading message="Loading ..." isOpen={busy} />
       <IonGrid>
-       
-          {items.length === 0 ? 
-          (<IonRow className='ion-justify-content-center'>
-            <IonButton 
-            style={{'marginTop': "25vh"}} 
-            fill='outline' 
-            routerLink='/tech' 
-            expand='full'> 
-              <IonText color='primary'>
-                Click to Add New Favourites
-              </IonText>
-            </IonButton> 
-          </IonRow>)
-          :(
-          <IonRow>
-            {items}
-          </IonRow>
-          ) 
-          }
+        {items.length === 0 ? 
+        (<IonRow className='ion-justify-content-center'>
+          <IonButton 
+          style={{'marginTop': "25vh"}} 
+          fill='outline' 
+          routerLink='/tech' 
+          expand='full'> 
+            <IonText color='primary'>
+              Click to Add New Favourites
+            </IonText>
+          </IonButton> 
+        </IonRow>)
+        :(
+        <IonRow>
+          {items}
+        </IonRow>
+        )}
       </IonGrid>
       </IonContent>
     </IonPage>

@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../helpers/api';
 import { toast } from '../helpers/toast';
-import { setTeches } from '../redux/actions/dataActions';
+import { setFavourites } from '../redux/actions/dataActions';
 import FavouriteItem from '../components/FavouriteItem';
-import { useHistory } from 'react-router';
 
 const Favourites: React.FC = () => {
   const dispatch = useDispatch()
@@ -13,7 +12,6 @@ const Favourites: React.FC = () => {
   const user = useSelector((state: RootStateOrAny) => state.auth.userData)
   const {token} = user ? user : ''
   const favourites = useSelector((state: RootStateOrAny) => state.data.favourites)
-  const history = useHistory();
   
   const allData = () => {
     setBusy(true);
@@ -24,7 +22,7 @@ const Favourites: React.FC = () => {
         if(data[0].error) {
           toast('Please check internet connection', 4000)
         } else {
-          dispatch(setTeches(data[1]))
+          dispatch(setFavourites(data[0]))
         }
       });
   }
@@ -42,8 +40,6 @@ const Favourites: React.FC = () => {
         toast(data.error, 4000)
       } else {
         allData()
-        history.push('/tech')
-        history.push('/favourites')
       }
     })
   }

@@ -84,7 +84,6 @@ const Tech: React.FC = () => {
     });
     return out;
   };
-  // console.log(itemArray());
   const renderTeches = (itemArray: any) => (teches === undefined || favourites === undefined
     ? []
     : itemArray().map((tech: any) => (
@@ -96,11 +95,8 @@ const Tech: React.FC = () => {
       />
     )));
   const techItems = () => renderTeches(addFavourites);
-  const techDetails = () => {
-    renderTeches(() => {
-      addFavourites().filter((tech: any) => tech.title === name);
-    });
-  };
+  const techDetails = () => renderTeches(() => addFavourites()
+    .filter((tech: any) => tech.title === name));
 
   return (
     <IonPage>
@@ -121,7 +117,7 @@ const Tech: React.FC = () => {
         </IonHeader>
         <IonLoading message="Loading ..." isOpen={busy} />
         <IonGrid>
-          <IonRow>{name ? [] : techItems()}</IonRow>
+          <IonRow>{name ? techDetails() : techItems()}</IonRow>
         </IonGrid>
       </IonContent>
     </IonPage>

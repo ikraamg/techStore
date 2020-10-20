@@ -34,7 +34,6 @@ const Register: React.FC = () => {
     if (username.trim() === '' || password.trim() === '') {
       return toast('Username and password are required');
     }
-
     setBusy(true);
     registerUser(username, email, password).then(user => {
       setBusy(false);
@@ -46,6 +45,7 @@ const Register: React.FC = () => {
         history.push('/tech');
       }
     });
+    return true;
   };
 
   return (

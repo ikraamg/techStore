@@ -95,7 +95,8 @@ const Tech: React.FC = () => {
       />
     )));
   const techItems = () => renderTeches(addFavourites);
-  const techDetails = () => renderTeches(() => addFavourites().filter((tech: any) => tech.title === name));
+  const techDetails = () => renderTeches(() => addFavourites()
+    .filter((tech: any) => tech.title === name));
 
   return (
     <IonPage>

@@ -18,7 +18,6 @@ import { logOutUser } from '../redux/actions/authActions';
 
 interface AppPage {
   url: string;
-  iosIcon: string;
   mdIcon: string;
   title: string;
 }
@@ -27,19 +26,16 @@ const appPages: AppPage[] = [
   {
     title: 'Tech',
     url: '/tech',
-    iosIcon: storefrontOutline,
     mdIcon: storefrontOutline,
   },
   {
     title: 'Favourites',
     url: '/favourites',
-    iosIcon: starOutline,
     mdIcon: starOutline,
   },
   {
     title: 'Log Out',
     url: '/logout',
-    iosIcon: logOutOutline,
     mdIcon: logOutOutline,
   },
 ];
@@ -57,8 +53,8 @@ const Menu: React.FC = () => {
           <IonNote className="ion-padding">
             {user ? user.user.username : ''}
           </IonNote>
-          {appPages.map((appPage, index) => (
-            <IonMenuToggle key={index} autoHide={false}>
+          {appPages.map(appPage => (
+            <IonMenuToggle key={appPage.title} autoHide={false}>
               <IonItem
                 className={location.pathname === appPage.url ? 'selected' : ''}
                 routerLink={appPage.url}
@@ -69,7 +65,6 @@ const Menu: React.FC = () => {
               >
                 <IonIcon
                   slot="start"
-                  ios={appPage.iosIcon}
                   md={appPage.mdIcon}
                 />
                 <IonLabel>{appPage.title}</IonLabel>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   IonButton,
   IonCard,
@@ -13,7 +14,7 @@ import {
 } from '@ionic/react';
 import { star } from 'ionicons/icons';
 
-interface Props {
+interface ComponentProps {
   tech: {
     id: number;
     title: string;
@@ -24,7 +25,7 @@ interface Props {
   handleFavourite: (arg0: number) => void;
 }
 
-const FavouriteItem: React.FC<Props> = ({ tech, handleFavourite }) => {
+const FavouriteItem: React.FC<ComponentProps> = ({ tech, handleFavourite }) => {
   const {
     id, title, category, description, price,
   } = tech;
@@ -73,6 +74,17 @@ const FavouriteItem: React.FC<Props> = ({ tech, handleFavourite }) => {
       </IonCard>
     </IonCol>
   );
+};
+
+FavouriteItem.propTypes = {
+  tech: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+  handleFavourite: PropTypes.func.isRequired,
 };
 
 export default FavouriteItem;

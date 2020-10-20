@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   IonButton,
   IonCard,
@@ -13,13 +15,13 @@ import {
 } from '@ionic/react';
 import { star, starOutline } from 'ionicons/icons';
 
-interface ContainerProps {
+interface ComponentProps {
   tech: any;
   handleFavourite: any;
   name: any;
 }
 
-const TechItem: React.FC<ContainerProps> = ({
+const TechItem: React.FC<ComponentProps> = ({
   tech,
   handleFavourite,
   name,
@@ -80,6 +82,26 @@ const TechItem: React.FC<ContainerProps> = ({
       </IonCard>
     </IonCol>
   );
+};
+
+TechItem.propTypes = {
+  tech: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    favourite: PropTypes.bool.isRequired,
+  }).isRequired,
+  handleFavourite: PropTypes.func.isRequired,
+  name: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.bool.isRequired,
+  ]),
+};
+
+TechItem.defaultProps = {
+  name: false,
 };
 
 export default TechItem;

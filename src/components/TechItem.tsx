@@ -67,10 +67,7 @@ const TechItem: React.FC<ContainerProps> = ({
                 expand="full"
                 onClick={e => handleFavourite(id, favourite, e)}
               >
-                <IonIcon
-                  slot="start"
-                  md={favourite ? star : starOutline}
-                />
+                <IonIcon slot="start" md={favourite ? star : starOutline} />
                 <IonText color="primary">
                   {favourite ? 'Remove ' : 'Add '}
                   {' '}

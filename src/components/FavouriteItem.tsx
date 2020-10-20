@@ -15,13 +15,13 @@ import { star } from 'ionicons/icons';
 
 interface Props {
   tech: {
-    id: number,
-    title: string,
-    category:string,
-    description:string,
-    price:number,
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    price: number;
   };
-  handleFavourite: (arg0: number) => void ;
+  handleFavourite: (arg0: number) => void;
 }
 
 const FavouriteItem: React.FC<Props> = ({ tech, handleFavourite }) => {

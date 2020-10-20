@@ -1,12 +1,11 @@
-import Menu from './components/Menu';
 import React from 'react';
-import Login from './pages/Login'
-import Register from './pages/Register'
-
-
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import Menu from './components/Menu';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,19 +28,17 @@ import './theme/variables.css';
 import Home from './pages/Home';
 import Favourites from './pages/Favourites';
 import Tech from './pages/Tech';
-import { RootStateOrAny, useSelector } from 'react-redux';
 
 const App: React.FC = () => {
-
-  const user = useSelector((state: RootStateOrAny) => state.auth.userData)
-   return (
+  const user = useSelector((state: RootStateOrAny) => state.auth.userData);
+  return (
     <IonApp>
       <>
         {user ? (
           <IonReactRouter>
             <IonSplitPane contentId="main">
               <Menu />
-              <IonRouterOutlet id="main">   
+              <IonRouterOutlet id="main">
                 <Route path="/favourites" component={Favourites} exact />
                 <Route path="/tech" component={Tech} exact />
                 <Route path="/tech/:name" component={Tech} />

@@ -1,4 +1,4 @@
-const defaultState:any = {
+const defaultState: any = {
   // userData:{
   //   token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.68NcogyO1TlhZSp7ZzrgcaxSxTw6tedbiw-zuAUbubg",
   //   user: {
@@ -11,16 +11,17 @@ const defaultState:any = {
   //     username: "test",
   //   }
   // }
-}
+};
 export default function authReducer(state = defaultState, action: any): any {
-  switch(action.type) {
+  switch (action.type) {
     case 'SET_USER':
       return {
         ...state,
-        userData: action.userData
-    }
+        userData: action.userData,
+      };
     case 'LOG_OUT':
-      return {}
+      return {};
+    default:
+      return state;
   }
-  return state
 }

@@ -49,7 +49,7 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonLoading message="Logging in..." duration={0} isOpen={busy} />
       <IonContent className="ion-padding enableBg">
-        <IonGrid style={{ marginTop: '5vh', }}>
+        <IonGrid style={{ marginTop: '5vh' }}>
           <IonRow className="ion-justify-content-center">
             <IonCol size="auto">
               <form>

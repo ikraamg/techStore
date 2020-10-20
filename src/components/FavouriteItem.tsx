@@ -22,7 +22,7 @@ interface ComponentProps {
     description: string;
     price: number;
   };
-  handleFavourite: (arg0: number) => void;
+  handleFavourite: any;
 }
 
 const FavouriteItem: React.FC<ComponentProps> = ({ tech, handleFavourite }) => {
@@ -31,7 +31,11 @@ const FavouriteItem: React.FC<ComponentProps> = ({ tech, handleFavourite }) => {
   } = tech;
   return (
     <IonCol sizeXs="12" sizeSm="6" sizeXl="4">
-      <IonCard key={id}>
+      <IonCard
+        key={id}
+        button
+        routerLink={`/tech/${title}`}
+      >
         <img
           alt="laptop"
           src={`https://source.unsplash.com/1600x900/?${title},${category}`}
@@ -63,7 +67,7 @@ const FavouriteItem: React.FC<ComponentProps> = ({ tech, handleFavourite }) => {
               <IonButton
                 fill="outline"
                 expand="full"
-                onClick={() => handleFavourite(id)}
+                onClick={e => handleFavourite(id, e)}
               >
                 <IonIcon slot="start" md={star} />
                 <IonText color="primary">Remove Favourite</IonText>

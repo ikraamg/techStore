@@ -46,7 +46,7 @@ const Favourites: React.FC = () => {
     allData();
   });
 
-  const handleFavourite = (tech_id: number) => {
+  const handleFavourite = (tech_id: number, e:Event) => {
     setBusy(true);
     request(token, `favourites/${tech_id}`, 'DELETE').then(data => {
       if (data.error) {
@@ -56,6 +56,11 @@ const Favourites: React.FC = () => {
         allData();
       }
     });
+
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
   };
 
   const favItems = () => (favourites

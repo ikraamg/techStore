@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -12,11 +13,10 @@ import {
   IonMenuButton,
   IonBackButton,
 } from '@ionic/react';
-import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { request } from '../helpers/api';
-import { toast } from '../helpers/toast';
+import request from '../helpers/api';
+import toast from '../helpers/toast';
 import { setTeches, setFavourites } from '../redux/actions/dataActions';
 import TechItem from '../components/TechItem';
 
@@ -46,7 +46,7 @@ const Tech: React.FC = () => {
     });
   };
 
-  const handleFavourite = (tech_id: number, status: boolean, e: any) => {
+  const handleFavourite = (tech_id: number, status: boolean, e: Event) => {
     setBusy(true);
     const toggleFavourite = status
       ? request(token, `favourites/${tech_id}`, 'DELETE')
@@ -76,6 +76,7 @@ const Tech: React.FC = () => {
       const checkFavourite = favourites.filter(
         (fav: any) => fav.id === tech.id,
       );
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       checkFavourite.length > 0
         ? Object.assign(tech, { favourite: true })
         : Object.assign(tech, { favourite: false });
@@ -83,20 +84,23 @@ const Tech: React.FC = () => {
     });
     return out;
   };
-
-  const renderTeches = (itemArray: any) => (teches && favourites
-    ? itemArray().map((tech: any) => (
+  // console.log(itemArray());
+  const renderTeches = (itemArray: any) => (teches === undefined || favourites === undefined
+    ? []
+    : itemArray().map((tech: any) => (
       <TechItem
         key={tech.id}
         tech={tech}
         handleFavourite={handleFavourite}
         name={name}
       />
-    ))
-    : []);
-
+    )));
   const techItems = () => renderTeches(addFavourites);
-  const techDetails = () => renderTeches(() => addFavourites().filter((tech: any) => tech.title === name));
+  const techDetails = () => {
+    renderTeches(() => {
+      addFavourites().filter((tech: any) => tech.title === name);
+    });
+  };
 
   return (
     <IonPage>
@@ -117,7 +121,7 @@ const Tech: React.FC = () => {
         </IonHeader>
         <IonLoading message="Loading ..." isOpen={busy} />
         <IonGrid>
-          <IonRow>{name ? techDetails() : techItems()}</IonRow>
+          <IonRow>{name ? [] : techItems()}</IonRow>
         </IonGrid>
       </IonContent>
     </IonPage>

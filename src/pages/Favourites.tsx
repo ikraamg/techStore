@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -13,10 +14,9 @@ import {
   IonButton,
   IonText,
 } from '@ionic/react';
-import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { request } from '../helpers/api';
-import { toast } from '../helpers/toast';
+import request from '../helpers/api';
+import toast from '../helpers/toast';
 import { setFavourites } from '../redux/actions/dataActions';
 import FavouriteItem from '../components/FavouriteItem';
 

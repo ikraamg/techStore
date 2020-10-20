@@ -12,6 +12,7 @@ export default function dataReducer(state = defaultState, action: any): any {
         ...state,
         favourites: action.favourites,
       };
+    default:
+      return state;
   }
-  return state;
 }

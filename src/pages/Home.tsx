@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   IonContent,
   IonHeader,
@@ -6,7 +7,6 @@ import {
   IonToolbar,
   IonButton,
 } from '@ionic/react';
-import React from 'react';
 
 const Home: React.FC = () => (
   <IonPage className="enableBg">

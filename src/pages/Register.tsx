@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -11,10 +12,9 @@ import {
   IonRow,
   IonCol,
 } from '@ionic/react';
-import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from '../helpers/toast';
+import toast from '../helpers/toast';
 import { registerUser } from '../helpers/auth';
 import { setUser } from '../redux/actions/authActions';
 

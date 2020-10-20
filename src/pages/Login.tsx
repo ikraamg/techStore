@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -11,13 +12,11 @@ import {
   IonGrid,
   IonCol,
 } from '@ionic/react';
-
-import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../helpers/auth';
 
-import { toast } from '../helpers/toast';
+import toast from '../helpers/toast';
 import { setUser } from '../redux/actions/authActions';
 
 const Login: React.FC = () => {

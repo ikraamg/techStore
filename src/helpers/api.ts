@@ -1,8 +1,8 @@
-export async function request(
+export default async function request(
   token = '',
   path = '/',
   method = 'GET',
-  body: object = {},
+  body: any = {},
 ) {
   try {
     const requestConfig = {
@@ -18,10 +18,8 @@ export async function request(
     }
     const res = await fetch(`http://localhost:3000/${path}`, requestConfig);
     const response = await res.json();
-    console.log('request -> response', response);
     return response;
   } catch (error) {
-    console.log(error);
     const res = { error: 'Please check your internet connection' };
     return res;
   }

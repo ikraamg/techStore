@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   IonContent,
   IonIcon,
@@ -9,8 +10,6 @@ import {
   IonNote,
   IonListHeader,
 } from '@ionic/react';
-
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { logOutOutline, storefrontOutline, starOutline } from 'ionicons/icons';
 import './Menu.css';

@@ -16,7 +16,7 @@ export default async function request(
     if (method !== 'GET' && method !== 'DELETE') {
       Object.assign(requestConfig, { body: JSON.stringify(body) });
     }
-    const res = await fetch(`http://localhost:3000/${path}`, requestConfig);
+    const res = await fetch(`https://tech-store-rails.herokuapp.com/${path}`, requestConfig);
     const response = await res.json();
     return response;
   } catch (error) {

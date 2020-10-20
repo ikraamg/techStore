@@ -23,8 +23,8 @@ const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('test');
-  const [password, setPassword] = useState('123456');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const login = () => {
     setBusy(true);

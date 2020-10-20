@@ -1,6 +1,6 @@
 export async function loginUser(username: string, password: string) {
   try {
-    const res = await fetch('http://localhost:3000/login', {
+    const res = await fetch('https://tech-store-rails.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -25,7 +25,7 @@ export async function registerUser(
   password: string,
 ) {
   try {
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch('https://tech-store-rails.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

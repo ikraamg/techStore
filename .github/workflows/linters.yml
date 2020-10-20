@@ -54,4 +54,5 @@ jobs:
 
       - name: Jest Report
         run: |
+          npm install 
           npm run test

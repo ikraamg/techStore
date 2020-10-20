@@ -38,8 +38,8 @@ jobs:
           [ -f .stylelintrc.json ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/react-redux/.stylelintrc.json
       - name: Stylelint Report
         run: npx stylelint "**/*.{css,scss}"
-  test:
-    name: test
+  Tests(Jest):
+    name: Tests(Jest)
     runs-on: ubuntu-18.04
     strategy:
       matrix:

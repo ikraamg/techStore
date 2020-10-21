@@ -9,9 +9,12 @@ import {
   IonMenuToggle,
   IonNote,
   IonListHeader,
+  IonToggle,
 } from '@ionic/react';
 import { useLocation } from 'react-router-dom';
-import { logOutOutline, storefrontOutline, starOutline } from 'ionicons/icons';
+import {
+  logOutOutline, storefrontOutline, starOutline, moon,
+} from 'ionicons/icons';
 import './Menu.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { logOutUser } from '../redux/actions/authActions';
@@ -21,6 +24,10 @@ interface AppPage {
   mdIcon: string;
   title: string;
 }
+
+const toggleDarkModeHandler = () => {
+  document.body.classList.toggle('dark');
+};
 
 const appPages: AppPage[] = [
   {
@@ -71,6 +78,15 @@ const Menu: React.FC = () => {
               </IonItem>
             </IonMenuToggle>
           ))}
+          <IonItem lines="none">
+            <IonIcon slot="start" icon={moon} />
+            <IonLabel>Dark Mode</IonLabel>
+            <IonToggle
+              slot="end"
+              name="darkMode"
+              onIonChange={toggleDarkModeHandler}
+            />
+          </IonItem>
         </IonList>
       </IonContent>
     </IonMenu>

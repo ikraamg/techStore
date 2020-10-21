@@ -77,11 +77,14 @@ The app was test with jest, redux-mock-store and react-testing-library.
 npm run test
 ```
 
-## "Nice To Have Requirements" that I Have Added To The Specs
+## "Nice To Have Requirements" that is Implemented
 
+- Dark Mode via toggle
 - Implement proper user authentication from the front-end to the server
-
-> I wanted to learn more about authentication relationships between rails and react.
+- Create a user table in your database, so that a given user could only access the favourites they selected
+- Make the app responsive, creating both tablet and desktop versions, following design guidelines
+- You could implement transitions to make the user experience better
+- Create full documentation for your API
 
 ## Potential Updates
 

@@ -77,7 +77,7 @@ The app was test with jest, redux-mock-store and react-testing-library.
 npm run test
 ```
 
-## "Nice To Have Requirements" that is Implemented
+## "Nice To Have Requirements" that are implemented
 
 - Dark Mode via toggle
 - Implement proper user authentication from the front-end to the server

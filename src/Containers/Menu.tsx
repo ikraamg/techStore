@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent,
   IonIcon,
@@ -13,7 +13,7 @@ import {
 } from '@ionic/react';
 import { useLocation } from 'react-router-dom';
 import {
-  logOutOutline, storefrontOutline, starOutline, moon,
+  logOutOutline, storefrontOutline, starOutline, moon, sunnyOutline,
 } from 'ionicons/icons';
 import './Menu.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
@@ -24,10 +24,6 @@ interface AppPage {
   mdIcon: string;
   title: string;
 }
-
-const toggleDarkModeHandler = () => {
-  document.body.classList.toggle('dark');
-};
 
 const appPages: AppPage[] = [
   {
@@ -52,6 +48,13 @@ const Menu: React.FC = () => {
   const user = useSelector((state: RootStateOrAny) => state.auth.userData);
   const location = useLocation();
   const handleLogOut = () => dispatch(logOutUser());
+  const [dark, setDark] = useState<boolean>(false);
+
+  const toggleDarkModeHandler = () => {
+    document.body.classList.toggle('dark');
+    setDark(!dark);
+  };
+
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
@@ -79,7 +82,7 @@ const Menu: React.FC = () => {
             </IonMenuToggle>
           ))}
           <IonItem lines="none">
-            <IonIcon slot="start" icon={moon} />
+            <IonIcon slot="start" icon={dark ? sunnyOutline : moon} />
             <IonLabel>Dark Mode</IonLabel>
             <IonToggle
               slot="end"

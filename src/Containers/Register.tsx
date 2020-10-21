@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import React, { useState } from 'react';
 import {
   IonContent,
@@ -55,9 +56,9 @@ const Register: React.FC = () => {
           <IonTitle className="ion-text-center">Register</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonLoading message="Registering..." duration={0} isOpen={busy} />
+      <IonLoading message="Registering...Awaking Server ... May take up to 30 seconds" duration={0} isOpen={busy} />
       <IonContent className="ion-padding enableBg">
-        <IonGrid style={{ marginTop: '5vh' }}>
+        <IonGrid style={{ marginTop: '5vh', }}>
           <IonRow className="ion-justify-content-center">
             <IonCol size="auto">
               <form>

@@ -9,6 +9,10 @@ http://ionicframework.com/docs/theming/ */
     0 0/100% 100% no-repeat;
 }
 
+ion-input {
+  --color: rgb(0, 0, 0) !important;
+}
+
 :root {
   /** primary **/
   --ion-color-primary: #fa8500;

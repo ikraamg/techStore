@@ -7,7 +7,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/ikraamg/techStore.git">
-    <p align="center"> <img src="https://user-images.githubusercontent.com/34813339/96832600-4d75e800-143f-11eb-811b-bf58741c4c45.gif" alt="react-redux" height="500">
+    <p align="center"> <img src="https://user-images.githubusercontent.com/34813339/96832600-4d75e800-143f-11eb-811b-bf58741c4c45.gif" alt="techStore" height="500">
     </p>
   </a>
 
@@ -114,13 +114,13 @@ Design influenced by [Alexey Savitskiy on Behance](https://www.behance.net/alexe
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/ikraamg/react-redux.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/ikraamg/techStore.svg?style=flat-square
 [contributors-url]: https://github.com/ikraamg/techStore/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ikraamg/react-redux.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/ikraamg/techStore.svg?style=flat-square
 [forks-url]: https://github.com/ikraamg/techStore/network/members
-[stars-shield]: https://img.shields.io/github/stars/ikraamg/react-redux.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/ikraamg/techStore.svg?style=flat-square
 [stars-url]: https://github.com/ikraamg/techStore/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ikraamg/react-redux.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/ikraamg/techStore.svg?style=flat-square
 [issues-url]: https://github.com/ikraamg/techStore/issues
 
 ## 📝 License

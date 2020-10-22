@@ -7,8 +7,8 @@
 <br />
 <p align="center">
   <a href="https://github.com/ikraamg/techStore.git">
-    <p align="center"> <img src="https://user-images.githubusercontent.com/34813339/96689545-d0853880-1382-11eb-9371-9755f41a55b1.png" alt="react-redux" height="500">
-    <img src="https://user-images.githubusercontent.com/34813339/96697115-d4698880-138b-11eb-944e-c004fff033f5.png" alt="react-redux" height="500"></p>
+    <p align="center"> <img src="https://user-images.githubusercontent.com/34813339/96832600-4d75e800-143f-11eb-811b-bf58741c4c45.gif" alt="react-redux" height="500">
+    </p>
   </a>
 
   <h3 align="center">Tech favourites - Full-Stack Rails and React APP </h3>
@@ -49,7 +49,7 @@ The back-end can be found [here](https://github.com/ikraamg/laptech/tree/api-fea
 
 ## How to use
 
-- Users can register and login to the account
+- Users can register and login to an account
 - Users can view list of technology items and click to view full details.
 - Users can favourite items and view a list of favourites
 
@@ -79,12 +79,12 @@ npm run test
 
 ## "Nice To Have Requirements" that are implemented
 
+- Implemented proper user authentication from the front-end to the server
+- Created a user table in the database, so that a given user can only access the favourites they selected
+- Made the app responsive, creating both tablet and desktop versions, following design guidelines
+- Transitions were implemented to make the user experience better
+- Created full documentation for the API
 - Dark Mode via toggle
-- Implement proper user authentication from the front-end to the server
-- Create a user table in your database, so that a given user could only access the favourites they selected
-- Make the app responsive, creating both tablet and desktop versions, following design guidelines
-- You could implement transitions to make the user experience better
-- Create full documentation for your API
 
 ## Potential Updates
 

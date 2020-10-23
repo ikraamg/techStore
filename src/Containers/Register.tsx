@@ -43,6 +43,7 @@ const Register: React.FC = () => {
       } else {
         toast('Registration successful');
         dispatch(setUser(user));
+        localStorage.setItem('JWT', user.token);
         history.push('/tech');
       }
     });

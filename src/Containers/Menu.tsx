@@ -47,7 +47,10 @@ const Menu: React.FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStateOrAny) => state.auth.userData);
   const location = useLocation();
-  const handleLogOut = () => dispatch(logOutUser());
+  const handleLogOut = () => {
+    localStorage.removeItem('JWT');
+    dispatch(logOutUser());
+  };
   const [dark, setDark] = useState<boolean>(false);
 
   const toggleDarkModeHandler = () => {

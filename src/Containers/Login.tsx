@@ -36,6 +36,7 @@ const Login: React.FC = () => {
       } else {
         toast('Login successful');
         dispatch(setUser(user));
+        localStorage.setItem('JWT', user.token);
         history.push('/tech');
       }
     });
